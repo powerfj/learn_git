@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+ annotations:
+   cert-manager.io/issuer: letsencrypt-prod
+ name: httpserver-ingress
+ namespace: default
+spec:
+ ingressClassName: nginx
+ rules:
+  - host: www1.powerfj.com
+    http:
+     paths:
+      - backend:
+         service: 
+          name: httpserver-svc
+          port: 
+           number: 80
+        pathType: Prefix
+        path: /healthz
+ tls:    
+  - hosts:       
+    - www1.powerfj.com      
+    secretName: www1-tls

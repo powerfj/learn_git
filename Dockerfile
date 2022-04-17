@@ -1,11 +1,15 @@
 #this is a dockerfile for httpserver
 #author: powerfj
-#第一行指定基础镜像
-FROM golang
-#镜像的操作指令
-WORKDIR $GOPATH/src/httpserver
+FROM golang AS builder
+ENV GOOS=linux
+ENV GO111MODULE=off
+ENV CGO_ENABLED=0
+WORKDIR /build
 COPY . ./
-RUN go build httpserver.go
-EXPOSE 7070
-ENTRYPOINT ["./httpserver"]
+RUN go build -o httpserver httpserver.go
+
+FROM scratch
+COPY --from=builder /build/httpserver /
+EXPOSE 8080
+ENTRYPOINT ["/httpserver"]
 
