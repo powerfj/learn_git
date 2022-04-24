@@ -11,9 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/powerfj/learn_git/metrics"
-
-	//"github.com/cncamp/golang/assignment/a02update/metrics"
+	"github.com/powerfj/learn_git/module10/src/metrics"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 

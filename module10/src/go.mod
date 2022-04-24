@@ -1,4 +1,4 @@
-module github.com/powerfj/learn_git
+module github.com/powerfj/learn_git/module10/src
 
 go 1.17
 
