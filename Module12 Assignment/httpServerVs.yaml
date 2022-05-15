@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: httpserver
+  namespace: httpmesh
+spec:
+  gateways:
+  - httpserver-gw
+  hosts:
+  - httpserver.am2901.com
+  http:
+  - route:
+    - destination:
+        host: httpserver-svc.httpmesh.svc.cluster.local
+        port:
+          number: 80
